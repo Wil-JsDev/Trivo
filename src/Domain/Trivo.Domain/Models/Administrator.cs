@@ -21,4 +21,5 @@ public sealed class Administrator : BaseEntity
     public bool? IsActive { get; set; } = true;
 
     public string? LinkedIn { get; set; }
+    
 }
