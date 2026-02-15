@@ -3,35 +3,37 @@ using Trivo.Domain.Models;
 namespace Trivo.Application.Interfaces.Repository;
 
 /// <summary>
-/// Defines operations to manage the association between users and interests.
+/// Defines operations for managing user–interest relationships.
 /// </summary>
 public interface IUserInterestRepository
 {
     /// <summary>
-    /// Creates a new relationship between a user and an interest.
+    /// Adds a relationship between a user and an interest.
     /// </summary>
-    /// <param name="userInterest">UserInterest relationship entity containing the necessary IDs.</param>
+    /// <param name="userInterest">Relationship entity.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
-    Task CreateUserInterestAsync(UserInterest userInterest, CancellationToken cancellationToken);
+    Task AddUserInterestAsync(
+        UserInterest userInterest,
+        CancellationToken cancellationToken);
 
     /// <summary>
-    /// Creates multiple relationships between users and interests in the database.
+    /// Adds multiple user–interest relationships.
     /// </summary>
-    /// <param name="relationships">List of <see cref="UserInterest"/> objects representing the relationships to create.</param>
-    /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task CreateMultipleUserInterestsAsync(List<UserInterest> relationships, CancellationToken cancellationToken);
+    /// <param name="relationships">Relationships to insert.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    Task AddRangeUserInterestsAsync(
+        List<UserInterest> relationships,
+        CancellationToken cancellationToken);
 
     /// <summary>
-    /// Associates a list of interests with a specific user, replacing existing associations.
+    /// Adds new interests to a user without duplicating existing ones.
     /// </summary>
-    /// <param name="userId">Unique identifier of the user.</param>
-    /// <param name="interestIds">List of interest identifiers to associate with the user.</param>
-    /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
-    /// <returns>
-    /// A task representing the asynchronous operation that returns the updated list
-    /// of associations between the user and their interests.
-    /// </returns>
-    Task<List<UserInterest>> AssociateInterestsToUserAsync(Guid userId, List<Guid> interestIds,
+    /// <param name="userId">User identifier.</param>
+    /// <param name="interestIds">Interest identifiers.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>List of newly created relationships.</returns>
+    Task<List<UserInterest>> AddInterestsToUserAsync(
+        Guid userId,
+        List<Guid> interestIds,
         CancellationToken cancellationToken);
 }

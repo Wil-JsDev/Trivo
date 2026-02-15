@@ -2,23 +2,28 @@ using Trivo.Domain.Models;
 
 namespace Trivo.Application.Interfaces.Repository;
 
+/// <summary>
+/// Defines operations for managing user–skill relationships.
+/// </summary>
 public interface IUserSkillRepository
 {
     /// <summary>
-    /// Creates the association between a skill and a specific user.
+    /// Adds a relationship between a user and a skill.
     /// </summary>
-    /// <param name="userSkill">The entity to add.</param>
-    /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task CreateUserSkillAsync(UserSkill userSkill, CancellationToken cancellationToken);
+    /// <param name="userSkill">The relationship entity to add.</param>
+    /// <param name="cancellationToken">Token to cancel the operation.</param>
+    Task AddUserSkillAsync(UserSkill userSkill, CancellationToken cancellationToken);
 
     /// <summary>
-    /// Associates a list of skills with a user, replacing existing associations.
+    /// Adds multiple skills to a user without duplicating existing relationships.
+    /// Only new associations will be created.
     /// </summary>
     /// <param name="userId">The user identifier.</param>
-    /// <param name="skillIds">List of skill identifiers to associate.</param>
-    /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
-    /// <returns>A task representing the asynchronous operation.</returns>
-    Task<List<UserSkill>> AssociateSkillsToUserAsync(Guid userId, List<Guid> skillIds,
+    /// <param name="skillIds">List of skill identifiers.</param>
+    /// <param name="cancellationToken">Token to cancel the operation.</param>
+    /// <returns>List of newly created relationships.</returns>
+    Task<List<UserSkill>> AddSkillsToUserAsync(
+        Guid userId,
+        List<Guid> skillIds,
         CancellationToken cancellationToken);
 }

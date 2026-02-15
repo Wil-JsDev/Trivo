@@ -64,7 +64,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="userId">User ID.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     /// <returns>A list of skill IDs belonging to the user.</returns>
-    Task<List<Guid>> GetUserSkillsAsync(Guid userId, CancellationToken cancellationToken);
+    Task<List<Guid?>> GetUserSkillsAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a user's interests given their ID.
@@ -72,7 +72,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="userId">User ID.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     /// <returns>A list of interest IDs belonging to the user.</returns>
-    Task<List<Guid>> GetUserInterestsAsync(Guid userId, CancellationToken cancellationToken);
+    Task<List<Guid?>> GetUserInterestsAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Verifies if an email is in use, excluding a specific user.
