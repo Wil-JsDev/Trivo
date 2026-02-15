@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trivo.Infrastructure.Shared
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trivo.Application", "src\Application\Trivo.Application\Trivo.Application.csproj", "{F6B7A416-C408-452F-B42D-D1E0F8861230}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trivo.Infrastructure.Persistence", "src\Infrastructure\Trivo.Infrastructure.Persistence\Trivo.Infrastructure.Persistence.csproj", "{166294DE-A04D-462C-B053-E699CD7A5293}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{F6B7A416-C408-452F-B42D-D1E0F8861230}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6B7A416-C408-452F-B42D-D1E0F8861230}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6B7A416-C408-452F-B42D-D1E0F8861230}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166294DE-A04D-462C-B053-E699CD7A5293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166294DE-A04D-462C-B053-E699CD7A5293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166294DE-A04D-462C-B053-E699CD7A5293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166294DE-A04D-462C-B053-E699CD7A5293}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
