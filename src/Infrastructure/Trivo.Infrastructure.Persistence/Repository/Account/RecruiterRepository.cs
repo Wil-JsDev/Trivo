@@ -8,7 +8,7 @@ namespace Trivo.Infrastructure.Persistence.Repository.Account;
 
 public class RecruiterRepository(TrivoContext context) : GenericRepository<Recruiter>(context), IRecruiterRepository
 {
-    public async Task<IEnumerable<Recruiter>> FilterRecruitersAsync(
+    public async Task<IEnumerable<Recruiter>> GetBySkillsAndInterestsAsync(
         List<Guid> skillIds,
         List<Guid> interestIds,
         CancellationToken cancellationToken)
@@ -36,7 +36,7 @@ public class RecruiterRepository(TrivoContext context) : GenericRepository<Recru
         return await ValidateAsync(r => r.UserId == userId, cancellationToken);
     }
 
-    public async Task<Recruiter?> GetRecruiterDetailsAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<Recruiter?> GetDetailsAsync(Guid userId, CancellationToken cancellationToken)
     {
         return await Context.Set<Recruiter>()
             .AsNoTracking()
@@ -66,7 +66,7 @@ public class RecruiterRepository(TrivoContext context) : GenericRepository<Recru
             .FirstOrDefaultAsync(r => r.Id == recruiterId, cancellationToken);
     }
 
-    public async Task<Recruiter?> GetRecruiterByUserIdAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<Recruiter?> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken)
     {
         return await Context.Set<Recruiter>()
             .AsNoTracking()

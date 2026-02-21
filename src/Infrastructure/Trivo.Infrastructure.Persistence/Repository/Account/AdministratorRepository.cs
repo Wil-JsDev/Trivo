@@ -12,7 +12,7 @@ public class AdministratorRepository(TrivoContext context) :
     GenericRepository<Administrator>(context),
     IAdministratorRepository
 {
-    public async Task BanUserAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task BanAsync(Guid userId, CancellationToken cancellationToken)
     {
         var user = await Context.Set<User>()
             .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
@@ -24,7 +24,7 @@ public class AdministratorRepository(TrivoContext context) :
         }
     }
 
-    public async Task UnbanUserAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task UnbanAsync(Guid userId, CancellationToken cancellationToken)
     {
         var user = await Context.Set<User>()
             .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
@@ -36,7 +36,7 @@ public class AdministratorRepository(TrivoContext context) :
         }
     }
 
-    public async Task<int> GetReportedUsersCountAsync(CancellationToken cancellationToken)
+    public async Task<int> GetReportedCountAsync(CancellationToken cancellationToken)
     {
         return await Context.Set<Report>()
             .AsNoTracking()
@@ -70,7 +70,7 @@ public class AdministratorRepository(TrivoContext context) :
         await Task.CompletedTask;
     }
 
-    public async Task<PagedResult<Report>> GetLatestReportsPagedAsync(
+    public async Task<PagedResult<Report>> GetPagedLatestReportsAsync(
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken)
@@ -94,7 +94,7 @@ public class AdministratorRepository(TrivoContext context) :
         return new PagedResult<Report>(items, total, pageNumber, pageSize);
     }
 
-    public async Task<PagedResult<User>> GetLatestUsersPagedAsync(
+    public async Task<PagedResult<User>> GetPagedLatestUsersAsync(
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken)
@@ -123,7 +123,7 @@ public class AdministratorRepository(TrivoContext context) :
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<PagedResult<Match>> GetLatestMatchesPagedAsync(
+    public async Task<PagedResult<Match>> GetPagedLatestMatchesAsync(
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken)
@@ -147,14 +147,14 @@ public class AdministratorRepository(TrivoContext context) :
         return new PagedResult<Match>(items, total, pageNumber, pageSize);
     }
 
-    public async Task<int> CountCompletedMatchesAsync(CancellationToken cancellationToken)
+    public async Task<int> GetCountCompletedMatchesAsync(CancellationToken cancellationToken)
     {
         return await Context.Set<Match>()
             .AsNoTracking()
             .CountAsync(x => x.MatchStatus == MatchStatus.Completed.ToString(), cancellationToken);
     }
 
-    public async Task<int> CountActiveUsersAsync(CancellationToken cancellationToken)
+    public async Task<int> GetCountActiveUsersAsync(CancellationToken cancellationToken)
     {
         return await Context.Set<User>()
             .AsNoTracking()

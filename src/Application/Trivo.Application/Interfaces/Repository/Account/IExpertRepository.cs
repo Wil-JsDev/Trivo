@@ -18,7 +18,7 @@ public interface IExpertRepository : IGenericRepository<Expert>
     /// <returns>
     /// A collection of experts matching the provided skill and interest criteria.
     /// </returns>
-    Task<IEnumerable<Expert>> FilterExpertsAsync(
+    Task<IEnumerable<Expert>> GetBySkillsAndInterestsAsync(
         List<Guid> skillIds,
         List<Guid> interestIds,
         CancellationToken cancellationToken);
@@ -31,7 +31,7 @@ public interface IExpertRepository : IGenericRepository<Expert>
     /// <summary>
     /// Gets the details of an expert by user ID.
     /// </summary>
-    Task<Expert?> GetExpertDetailsAsync(Guid userId, CancellationToken cancellationToken);
+    Task<Expert?> GetDetailsAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets an expert by their specific identifier.
@@ -41,5 +41,5 @@ public interface IExpertRepository : IGenericRepository<Expert>
     /// <summary>
     /// Gets the expert record associated with a specific user ID.
     /// </summary>
-    Task<Expert?> GetExpertByUserIdAsync(Guid userId, CancellationToken cancellationToken);
+    Task<Expert?> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken);
 }

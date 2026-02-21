@@ -13,7 +13,7 @@ public interface IChatRepository : IGenericRepository<Chat>
     Task<PagedResult<Chat>> GetChatsByUserIdPagedAsync(Guid userId, int page, int pageSize,
         CancellationToken cancellationToken);
 
-    Task<Chat> GetChatByIdAsync(Guid chatId, CancellationToken cancellationToken);
+    Task<Chat> GetByIdAsync(Guid chatId, CancellationToken cancellationToken);
 
     Task<bool> IsUserInChatAsync(Guid chatId, Guid userId, CancellationToken cancellationToken);
 

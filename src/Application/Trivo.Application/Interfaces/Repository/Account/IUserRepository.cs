@@ -28,7 +28,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="userId">User ID.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     /// <returns>User status or null if it does not exist.</returns>
-    Task<string?> GetUserStatusAsync(Guid userId, CancellationToken cancellationToken);
+    Task<string?> GetStatusAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Searches for a user by their email.
@@ -36,7 +36,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="email">User email.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     /// <returns>The found user or null if they do not exist.</returns>
-    Task<User> GetByUserEmailAsync(string email, CancellationToken cancellationToken);
+    Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken);
 
     /// <summary>
     /// Searches for a user by their username.
@@ -53,7 +53,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="skillIds">Optional list of skill IDs to filter by.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
     /// <returns>A collection of <see cref="User"/> objects matching the specified interests or skills.</returns>
-    Task<IEnumerable<User>> FilterByInterestsAndSkillsAsync(
+    Task<IEnumerable<User>> GetByInterestsAndSkillsAsync(
         List<Guid>? interestIds,
         List<Guid>? skillIds,
         CancellationToken cancellationToken);
@@ -64,7 +64,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="userId">User ID.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     /// <returns>A list of skill IDs belonging to the user.</returns>
-    Task<List<Guid?>> GetUserSkillsAsync(Guid userId, CancellationToken cancellationToken);
+    Task<List<Guid?>> GetSkillsAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a user's interests given their ID.
@@ -72,7 +72,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="userId">User ID.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
     /// <returns>A list of interest IDs belonging to the user.</returns>
-    Task<List<Guid?>> GetUserInterestsAsync(Guid userId, CancellationToken cancellationToken);
+    Task<List<Guid?>> GetInterestsAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Verifies if an email is in use, excluding a specific user.
@@ -110,7 +110,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// <param name="userId">The unique identifier of the user.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
     /// <returns>A user with their full details.</returns>
-    Task<User> GetUserDetailsByIdAsync(Guid userId, CancellationToken cancellationToken);
+    Task<User> GetDetailsByIdAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a specific user along with their interests and skills.
@@ -125,7 +125,7 @@ public interface IUserRepository : IGenericRepository<User>
     /// </summary>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
     /// <returns>A collection of users with their interests and skills.</returns>
-    Task<IEnumerable<User>> GetAllUsersWithInterestsAndSkillsAsync(CancellationToken cancellationToken);
+    Task<IEnumerable<User>> GetAllWithInterestsAndSkillsAsync(CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets the list of interests associated with a specific user.

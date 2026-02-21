@@ -11,12 +11,12 @@ public class SkillRepository(TrivoContext context) : Validation<Skill>(context),
 {
     private readonly TrivoContext _context = context;
 
-    public async Task CreateSkillAsync(Skill skills, CancellationToken cancellationToken)
+    public async Task CreateAsync(Skill skills, CancellationToken cancellationToken)
     {
         await _context.Set<Skill>().AddAsync(skills, cancellationToken);
     }
 
-    public async Task UpdateSkillAsync(Guid userId, List<Guid> skillIds, CancellationToken cancellationToken)
+    public async Task UpdateAsync(Guid userId, List<Guid> skillIds, CancellationToken cancellationToken)
     {
         var currentSkillIds = await _context.Set<UserSkill>()
             .Where(us => us.UserId == userId && us.SkillId != null)
@@ -47,7 +47,7 @@ public class SkillRepository(TrivoContext context) : Validation<Skill>(context),
     }
 
 
-    public async Task<PagedResult<Skill>> GetSkillsPagedAsync(int pageNumber, int pageSize,
+    public async Task<PagedResult<Skill>> GetPagedAsync(int pageNumber, int pageSize,
         CancellationToken cancellationToken)
     {
         var total = await _context.Set<Skill>().AsNoTracking().CountAsync(cancellationToken);
@@ -60,7 +60,7 @@ public class SkillRepository(TrivoContext context) : Validation<Skill>(context),
         return new PagedResult<Skill>(items, total, pageNumber, pageSize);
     }
 
-    public async Task<Skill> GetSkillByIdAsync(Guid skillId, CancellationToken cancellationToken)
+    public async Task<Skill> GetByIdAsync(Guid skillId, CancellationToken cancellationToken)
     {
         return (await _context.Set<Skill>()
             .FirstOrDefaultAsync(x => x.SkillId == skillId, cancellationToken))!;
@@ -89,7 +89,7 @@ public class SkillRepository(TrivoContext context) : Validation<Skill>(context),
         return await Validate(x => x.Name == name, cancellationToken);
     }
 
-    public async Task<IEnumerable<Skill>> SearchSkillsByNameAsync(string skillName, CancellationToken cancellationToken)
+    public async Task<IEnumerable<Skill>> SearchByNameAsync(string skillName, CancellationToken cancellationToken)
     {
         return await _context.Set<Skill>()
             .AsNoTracking()

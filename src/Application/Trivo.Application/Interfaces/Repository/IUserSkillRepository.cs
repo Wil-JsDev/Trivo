@@ -12,7 +12,7 @@ public interface IUserSkillRepository
     /// </summary>
     /// <param name="userSkill">The relationship entity to add.</param>
     /// <param name="cancellationToken">Token to cancel the operation.</param>
-    Task AddUserSkillAsync(UserSkill userSkill, CancellationToken cancellationToken);
+    Task AddAsync(UserSkill userSkill, CancellationToken cancellationToken);
 
     /// <summary>
     /// Adds multiple skills to a user without duplicating existing relationships.

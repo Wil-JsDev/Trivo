@@ -12,7 +12,7 @@ public interface IRecruiterRepository : IGenericRepository<Recruiter>
     /// <param name="interestIds">List of interest IDs to filter.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
     /// <returns>A task representing the asynchronous operation. The result contains a list of recruiters who meet the filters.</returns>
-    Task<IEnumerable<Recruiter>> FilterRecruitersAsync(
+    Task<IEnumerable<Recruiter>> GetBySkillsAndInterestsAsync(
         List<Guid> skillIds,
         List<Guid> interestIds,
         CancellationToken cancellationToken);
@@ -25,7 +25,7 @@ public interface IRecruiterRepository : IGenericRepository<Recruiter>
     /// <summary>
     /// Gets the details of a recruiter by user ID.
     /// </summary>
-    Task<Recruiter?> GetRecruiterDetailsAsync(Guid userId, CancellationToken cancellationToken);
+    Task<Recruiter?> GetDetailsAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a recruiter by their specific identifier.
@@ -35,5 +35,5 @@ public interface IRecruiterRepository : IGenericRepository<Recruiter>
     /// <summary>
     /// Gets the recruiter record associated with a specific user ID.
     /// </summary>
-    Task<Recruiter?> GetRecruiterByUserIdAsync(Guid userId, CancellationToken cancellationToken);
+    Task<Recruiter?> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken);
 }

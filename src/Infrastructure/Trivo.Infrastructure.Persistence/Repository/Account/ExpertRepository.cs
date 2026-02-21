@@ -8,7 +8,7 @@ namespace Trivo.Infrastructure.Persistence.Repository.Account;
 
 public class ExpertRepository(TrivoContext context) : GenericRepository<Expert>(context), IExpertRepository
 {
-    public async Task<IEnumerable<Expert>> FilterExpertsAsync(
+    public async Task<IEnumerable<Expert>> GetBySkillsAndInterestsAsync(
         List<Guid> skillIds,
         List<Guid> interestIds,
         CancellationToken cancellationToken
@@ -37,7 +37,7 @@ public class ExpertRepository(TrivoContext context) : GenericRepository<Expert>(
         return await ValidateAsync(x => x.UserId == userId, cancellationToken);
     }
 
-    public async Task<Expert?> GetExpertDetailsAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<Expert?> GetDetailsAsync(Guid userId, CancellationToken cancellationToken)
     {
         return await Context.Set<Expert>()
             .AsNoTracking()
@@ -66,7 +66,7 @@ public class ExpertRepository(TrivoContext context) : GenericRepository<Expert>(
             .FirstOrDefaultAsync(e => e.Id == expertId, cancellationToken);
     }
 
-    public async Task<Expert?> GetExpertByUserIdAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<Expert?> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken)
     {
         return await Context.Set<Expert>()
             .AsNoTracking()

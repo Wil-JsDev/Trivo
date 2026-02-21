@@ -12,7 +12,7 @@ public interface ISkillRepository : IValidation<Skill>
     /// <param name="skills">The skill entity to create.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task CreateSkillAsync(Skill skills, CancellationToken cancellationToken);
+    Task CreateAsync(Skill skills, CancellationToken cancellationToken);
 
     /// <summary>
     /// Updates the list of skills associated with a specific user.
@@ -21,7 +21,7 @@ public interface ISkillRepository : IValidation<Skill>
     /// <param name="skillIds">List of skill identifiers to be assigned to the user.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task UpdateSkillAsync(Guid userId, List<Guid> skillIds, CancellationToken cancellationToken);
+    Task UpdateAsync(Guid userId, List<Guid> skillIds, CancellationToken cancellationToken);
 
     /// <summary>
     /// Retrieves a paged list of skills.
@@ -30,7 +30,7 @@ public interface ISkillRepository : IValidation<Skill>
     /// <param name="pageSize">Number of elements per page.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
     /// <returns>A task that returns a paged result with the requested skills.</returns>
-    Task<PagedResult<Skill>> GetSkillsPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
+    Task<PagedResult<Skill>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken);
 
     /// <summary>
     /// Retrieves a skill by its unique identifier.
@@ -38,7 +38,7 @@ public interface ISkillRepository : IValidation<Skill>
     /// <param name="skillId">The identifier of the skill to retrieve.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation.</param>
     /// <returns>A task that returns the requested skill.</returns>
-    Task<Skill> GetSkillByIdAsync(Guid skillId, CancellationToken cancellationToken);
+    Task<Skill> GetByIdAsync(Guid skillId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Retrieves users who are assigned the specified skills.
@@ -64,5 +64,5 @@ public interface ISkillRepository : IValidation<Skill>
     /// <param name="skillName">Text to search for within the skill names.</param>
     /// <param name="cancellationToken">Token to cancel the operation early.</param>
     /// <returns>A collection of skills that partially match the provided text.</returns>
-    Task<IEnumerable<Skill>> SearchSkillsByNameAsync(string skillName, CancellationToken cancellationToken);
+    Task<IEnumerable<Skill>> SearchByNameAsync(string skillName, CancellationToken cancellationToken);
 }
