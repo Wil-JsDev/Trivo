@@ -11,7 +11,7 @@ namespace Trivo.Infrastructure.Persistence.Repository;
 public class UserInterestRepository(TrivoContext context)
     : IUserInterestRepository
 {
-    public async Task AddUserInterestAsync(
+    public async Task AddAsync(
         UserInterest userInterest,
         CancellationToken cancellationToken)
     {
@@ -22,7 +22,7 @@ public class UserInterestRepository(TrivoContext context)
     /// <summary>
     /// Adds multiple user–interest relationships.
     /// </summary>
-    public async Task AddRangeUserInterestsAsync(
+    public async Task AddRangeAsync(
         List<UserInterest> relationships,
         CancellationToken cancellationToken)
     {

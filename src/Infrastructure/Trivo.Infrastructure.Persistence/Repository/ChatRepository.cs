@@ -71,7 +71,7 @@ public class ChatRepository(TrivoContext context) : GenericRepository<Chat>(cont
         return new PagedResult<Chat>(chats, total, page, pageSize);
     }
 
-    public async Task<Chat> GetChatByIdAsync(Guid chatId, CancellationToken cancellationToken)
+    public async Task<Chat> GetByIdAsync(Guid chatId, CancellationToken cancellationToken)
         => (await Context.Set<Chat>()
             .Include(c => c.ChatUsers)!
             .ThenInclude(cu => cu.User)

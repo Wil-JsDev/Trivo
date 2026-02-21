@@ -11,7 +11,7 @@ namespace Trivo.Infrastructure.Persistence.Repository;
 public class UserSkillRepository(TrivoContext context)
     : IUserSkillRepository
 {
-    public async Task AddUserSkillAsync(
+    public async Task AddAsync(
         UserSkill userSkill,
         CancellationToken cancellationToken)
     {

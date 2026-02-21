@@ -12,7 +12,7 @@ public interface IUserInterestRepository
     /// </summary>
     /// <param name="userInterest">Relationship entity.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
-    Task AddUserInterestAsync(
+    Task AddAsync(
         UserInterest userInterest,
         CancellationToken cancellationToken);
 
@@ -21,7 +21,7 @@ public interface IUserInterestRepository
     /// </summary>
     /// <param name="relationships">Relationships to insert.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
-    Task AddRangeUserInterestsAsync(
+    Task AddRangeAsync(
         List<UserInterest> relationships,
         CancellationToken cancellationToken);
 

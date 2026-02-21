@@ -9,19 +9,19 @@ namespace Trivo.Infrastructure.Persistence.Repository;
 
 public class MatchRepository(TrivoContext context) : GenericRepository<Match>(context), IMatchRepository
 {
-    public async Task<Match?> GetMatchAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken)
+    public async Task<Match?> GetAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken)
     {
         return await Context.Set<Match>()
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ExpertId == expertId && m.RecruiterId == recruiterId, cancellationToken);
     }
 
-    public async Task<bool> MatchExistsAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken)
+    public async Task<bool> ExistsAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken)
     {
         return await ValidateAsync(x => x.ExpertId == expertId && x.RecruiterId == recruiterId, cancellationToken);
     }
 
-    public async Task<IEnumerable<Match>> GetMatchesAsExpertAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<IEnumerable<Match>> GetAsExpertAsync(Guid userId, CancellationToken cancellationToken)
     {
         return await Context.Set<Match>()
             .AsNoTracking()
@@ -47,7 +47,7 @@ public class MatchRepository(TrivoContext context) : GenericRepository<Match>(co
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<Match>> GetMatchesAsRecruiterAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<IEnumerable<Match>> GetAsRecruiterAsync(Guid userId, CancellationToken cancellationToken)
     {
         return await Context.Set<Match>()
             .AsNoTracking()
@@ -97,7 +97,7 @@ public class MatchRepository(TrivoContext context) : GenericRepository<Match>(co
             .FirstOrDefaultAsync(m => m.Id == matchId, cancellationToken);
     }
 
-    public async Task UpdateMatchStatusAsync(Guid matchId,
+    public async Task UpdateStatusAsync(Guid matchId,
         MatchUpdateStatus? status, CancellationToken cancellationToken)
     {
         var match = await Context.Set<Match>()

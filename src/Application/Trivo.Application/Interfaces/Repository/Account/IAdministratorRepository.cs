@@ -6,11 +6,11 @@ namespace Trivo.Application.Interfaces.Repository.Account;
 
 public interface IAdministratorRepository : IGenericRepository<Administrator>
 {
-    Task BanUserAsync(Guid userId, CancellationToken cancellationToken);
+    Task BanAsync(Guid userId, CancellationToken cancellationToken);
 
-    Task UnbanUserAsync(Guid userId, CancellationToken cancellationToken);
+    Task UnbanAsync(Guid userId, CancellationToken cancellationToken);
 
-    Task<PagedResult<Report>> GetLatestReportsPagedAsync(
+    Task<PagedResult<Report>> GetPagedLatestReportsAsync(
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken);
@@ -29,19 +29,19 @@ public interface IAdministratorRepository : IGenericRepository<Administrator>
 
     Task UpdatePasswordAsync(Administrator admin, string newPassword);
 
-    Task<PagedResult<User>> GetLatestUsersPagedAsync(
+    Task<PagedResult<User>> GetPagedLatestUsersAsync(
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken);
 
-    Task<PagedResult<Match>> GetLatestMatchesPagedAsync(
+    Task<PagedResult<Match>> GetPagedLatestMatchesAsync(
         int pageNumber,
         int pageSize,
         CancellationToken cancellationToken);
 
-    Task<int> CountCompletedMatchesAsync(CancellationToken cancellationToken);
+    Task<int> GetCountCompletedMatchesAsync(CancellationToken cancellationToken);
 
-    Task<int> CountActiveUsersAsync(CancellationToken cancellationToken);
+    Task<int> GetCountActiveUsersAsync(CancellationToken cancellationToken);
 
-    Task<int> GetReportedUsersCountAsync(CancellationToken cancellationToken);
+    Task<int> GetReportedCountAsync(CancellationToken cancellationToken);
 }

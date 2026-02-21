@@ -17,7 +17,7 @@ public interface IMatchRepository : IGenericRepository<Match>
     /// <param name="recruiterId">The recruiter's ID.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>The found match, or null if it does not exist.</returns>
-    Task<Match?> GetMatchAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken);
+    Task<Match?> GetAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Verifies if a match exists between an expert and a recruiter.
@@ -26,7 +26,7 @@ public interface IMatchRepository : IGenericRepository<Match>
     /// <param name="recruiterId">The recruiter's ID.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>True if the match exists; false otherwise.</returns>
-    Task<bool> MatchExistsAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken);
+    Task<bool> ExistsAsync(Guid expertId, Guid recruiterId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets the pending matches where the user acts as an expert.
@@ -34,7 +34,7 @@ public interface IMatchRepository : IGenericRepository<Match>
     /// <param name="userId">The unique identifier of the user.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
     /// <returns>A list of pending matches associated with the user as an expert.</returns>
-    Task<IEnumerable<Match>> GetMatchesAsExpertAsync(Guid userId, CancellationToken cancellationToken);
+    Task<IEnumerable<Match>> GetAsExpertAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets the pending matches where the user acts as a recruiter.
@@ -42,7 +42,7 @@ public interface IMatchRepository : IGenericRepository<Match>
     /// <param name="userId">The unique identifier of the user.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
     /// <returns>A list of pending matches associated with the user as a recruiter.</returns>
-    Task<IEnumerable<Match>> GetMatchesAsRecruiterAsync(Guid userId, CancellationToken cancellationToken);
+    Task<IEnumerable<Match>> GetAsRecruiterAsync(Guid userId, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets a match by its unique identifier.
@@ -55,5 +55,5 @@ public interface IMatchRepository : IGenericRepository<Match>
     /// <param name="matchId">The identifier of the match.</param>
     /// <param name="status">The new update status for the match.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
-    Task UpdateMatchStatusAsync(Guid matchId, MatchUpdateStatus? status, CancellationToken cancellationToken);
+    Task UpdateStatusAsync(Guid matchId, MatchUpdateStatus? status, CancellationToken cancellationToken);
 }

@@ -17,14 +17,14 @@ public class UserRepository(TrivoContext context) :
     public async Task<bool> IsUsernameInUseAsync(string username, Guid userId, CancellationToken cancellationToken) =>
         await ValidateAsync(u => u.Username == username && u.Id != userId, cancellationToken);
 
-    public async Task<string?> GetUserStatusAsync(Guid userId, CancellationToken cancellationToken) =>
+    public async Task<string?> GetStatusAsync(Guid userId, CancellationToken cancellationToken) =>
         await Context.Set<User>()
             .AsNoTracking()
             .Where(u => u.Id == userId)
             .Select(u => u.UserStatus)
             .FirstOrDefaultAsync(cancellationToken);
 
-    public async Task<User> GetByUserEmailAsync(string email, CancellationToken cancellationToken) =>
+    public async Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken) =>
         (await Context.Set<User>()
             .AsNoTracking()
             .Where(u => u.Email == email)
@@ -36,13 +36,13 @@ public class UserRepository(TrivoContext context) :
             .Where(u => u.Username == username)
             .FirstOrDefaultAsync(cancellationToken))!;
 
-    public async Task<List<Guid?>> GetUserSkillsAsync(Guid userId, CancellationToken cancellationToken) =>
+    public async Task<List<Guid?>> GetSkillsAsync(Guid userId, CancellationToken cancellationToken) =>
         await Context.Set<UserSkill>()
             .Where(uh => uh.UserId == userId)
             .Select(uh => uh.SkillId)
             .ToListAsync(cancellationToken);
 
-    public async Task<List<Guid?>> GetUserInterestsAsync(Guid userId, CancellationToken cancellationToken) =>
+    public async Task<List<Guid?>> GetInterestsAsync(Guid userId, CancellationToken cancellationToken) =>
         await Context.Set<UserInterest>()
             .Where(ui => ui.UserId == userId)
             .Select(ui => ui.InterestId)
@@ -64,7 +64,7 @@ public class UserRepository(TrivoContext context) :
     public async Task<bool> UsernameExistsAsync(string username, CancellationToken cancellationToken) =>
         await ValidateAsync(u => u.Username == username, cancellationToken);
 
-    public async Task<User> GetUserDetailsByIdAsync(Guid userId, CancellationToken cancellationToken)
+    public async Task<User> GetDetailsByIdAsync(Guid userId, CancellationToken cancellationToken)
     {
         return (await Context.Set<User>()
             .AsNoTracking()
@@ -102,7 +102,7 @@ public class UserRepository(TrivoContext context) :
             .FirstOrDefaultAsync(cancellationToken))!;
     }
 
-    public async Task<IEnumerable<User>> FilterByInterestsAndSkillsAsync(
+    public async Task<IEnumerable<User>> GetByInterestsAndSkillsAsync(
         List<Guid>? interestIds,
         List<Guid>? skillIds,
         CancellationToken cancellationToken)
@@ -155,7 +155,7 @@ public class UserRepository(TrivoContext context) :
             .FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
     }
 
-    public async Task<IEnumerable<User>> GetAllUsersWithInterestsAndSkillsAsync(CancellationToken cancellationToken)
+    public async Task<IEnumerable<User>> GetAllWithInterestsAndSkillsAsync(CancellationToken cancellationToken)
     {
         return await Context.Set<User>()
             .AsNoTracking()

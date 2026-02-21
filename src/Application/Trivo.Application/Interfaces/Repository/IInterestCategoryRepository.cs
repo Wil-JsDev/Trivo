@@ -15,7 +15,7 @@ public interface IInterestCategoryRepository : IValidation<InterestCategory>
     /// <param name="category">The interest category to create.</param>
     /// <param name="cancellationToken">Token to cancel the asynchronous operation if necessary.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task CreateInterestCategoryAsync(InterestCategory category, CancellationToken cancellationToken);
+    Task CreateAsync(InterestCategory category, CancellationToken cancellationToken);
 
     /// <summary>
     /// Retrieves a specific interest category by its unique identifier.
@@ -32,7 +32,7 @@ public interface IInterestCategoryRepository : IValidation<InterestCategory>
     /// <param name="pageSize">The number of elements per page.</param>
     /// <param name="cancellationToken">Cancellation token for the asynchronous operation.</param>
     /// <returns>A task that returns a paged result containing interest categories.</returns>
-    Task<PagedResult<InterestCategory>> GetInterestCategoriesPagedAsync(int pageNumber, int pageSize,
+    Task<PagedResult<InterestCategory>> GetPagedAsync(int pageNumber, int pageSize,
         CancellationToken cancellationToken);
 
     /// <summary>
@@ -41,7 +41,7 @@ public interface IInterestCategoryRepository : IValidation<InterestCategory>
     /// <param name="interestCategory">The interest category entity with the updated values.</param>
     /// <param name="cancellationToken">Cancellation token for the asynchronous operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task UpdateInterestCategoryAsync(InterestCategory interestCategory, CancellationToken cancellationToken);
+    Task UpdateAsync(InterestCategory interestCategory, CancellationToken cancellationToken);
 
     /// <summary>
     /// Verifies if a record with the specified name already exists.
