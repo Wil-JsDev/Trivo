@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Trivo.Application.DTOs;
+using Trivo.Application.DTOs.Messages;
 using Trivo.Application.Interfaces.SignalR;
 
 namespace Trivo.Infrastructure.Shared.SignalR.Hubs;

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Trivo.Application.DTOs;
 using Trivo.Application.DTOs.Chat;
+using Trivo.Application.DTOs.Messages;
 using Trivo.Application.Interfaces.SignalR;
 using Trivo.Infrastructure.Shared.SignalR.Hubs;
 

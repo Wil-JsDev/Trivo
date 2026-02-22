@@ -1,4 +1,5 @@
 using Trivo.Application.DTOs;
+using Trivo.Application.DTOs.Messages;
 using Trivo.Application.Interfaces.Repository.Base;
 using Trivo.Application.Pagination;
 using Trivo.Domain.Models;

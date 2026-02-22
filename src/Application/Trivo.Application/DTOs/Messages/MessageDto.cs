@@ -1,4 +1,4 @@
-namespace Trivo.Application.DTOs;
+namespace Trivo.Application.DTOs.Messages;
 
 public sealed record MessageDto(
     Guid MessageId,

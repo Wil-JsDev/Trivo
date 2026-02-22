@@ -1,4 +1,5 @@
-﻿using Trivo.Application.DTOs.User;
+﻿using Trivo.Application.DTOs.Messages;
+using Trivo.Application.DTOs.User;
 
 namespace Trivo.Application.DTOs.Chat;
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Trivo.Application.DTOs;
+using Trivo.Application.DTOs.Messages;
 using Trivo.Application.Interfaces.Repository;
 using Trivo.Application.Pagination;
 using Trivo.Domain.Models;

@@ -21,8 +21,4 @@
       <ProjectReference Include="..\..\Domain\Trivo.Domain\Trivo.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Abstractions\" />
-    </ItemGroup>
-
 </Project>
