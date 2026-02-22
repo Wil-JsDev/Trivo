@@ -36,22 +36,22 @@ public class UserRecommendationHub(
 
         logger.LogInformation("- UserId: {UserId}", userId);
 
-        var result = await mediator.Send(new GetUserAiRecommendationsQuery(
-            userId,
-            PageNumber: pageNumber,
-            PageSize: pageSize
-        ));
-
-        if (!result.IsSuccess)
-        {
-            logger.LogWarning("No recommendations found for user {UserId}.", userId);
-            await Clients.User(userId.ToString()).ReceiveRecommendationsAsync(new List<UserIARecommendationDto>());
-            await base.OnConnectedAsync();
-            return;
-        }
-
-        await Clients.User(userId.ToString())
-            .ReceiveRecommendationsAsync(result.Value.Items);
+        // var result = await mediator.Send(new GetUserAiRecommendationsQuery(
+        //     userId,
+        //     PageNumber: pageNumber,
+        //     PageSize: pageSize
+        // ));
+        //
+        // if (!result.IsSuccess)
+        // {
+        //     logger.LogWarning("No recommendations found for user {UserId}.", userId);
+        //     await Clients.User(userId.ToString()).ReceiveRecommendationsAsync(new List<UserIARecommendationDto>());
+        //     await base.OnConnectedAsync();
+        //     return;
+        // }
+        //
+        // await Clients.User(userId.ToString())
+        //     .ReceiveRecommendationsAsync(result.Value.Items);
 
         await base.OnConnectedAsync();
     }

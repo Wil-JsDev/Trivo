@@ -24,11 +24,11 @@ public class ChatHub(
 
         logger.LogInformation("User connected: {UserId}", userId);
 
-        await mediator.Send(new GetChatPagesQuery(
-            userId,
-            PageNumber: 1,
-            PageSize: 9
-        ));
+        // await mediator.Send(new GetChatPagesQuery(
+        //     userId,
+        //     PageNumber: 1,
+        //     PageSize: 9
+        // ));
 
         await base.OnConnectedAsync();
     }
@@ -62,10 +62,10 @@ public class ChatHub(
 
     public async Task GetChatMessages(Guid chatId, int pageNumber = 1, int pageSize = 20)
     {
-        await mediator.Send(new GetMessagePagesQuery(
-            chatId,
-            pageNumber,
-            pageSize
-        ));
+        // await mediator.Send(new GetMessagePagesQuery(
+        //     chatId,
+        //     pageNumber,
+        //     pageSize
+        // ));
     }
 }

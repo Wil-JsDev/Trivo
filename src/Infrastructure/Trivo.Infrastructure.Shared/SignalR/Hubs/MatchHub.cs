@@ -75,25 +75,25 @@ public class MatchHub(
             logger.LogInformation("User with valid role connected: {UserId} - Role: {Role}", 
                 userId, role.ToString());
 
-            var result = await mediator.Send(new GetMatchesByUserQuery
-            (
-                userId,
-                pageNumber,
-                pageSize,
-                role
-            ));
+            // var result = await mediator.Send(new GetMatchesByUserQuery
+            // (
+            //     userId,
+            //     pageNumber,
+            //     pageSize,
+            //     role
+            // ));
+            //
+            // if (!result.IsSuccess)
+            // {
+            //     logger.LogWarning("No matches found for user {UserId} with role {Role}.",
+            //         userId, role);
+            //     
+            //     await Clients.User(userId.ToString()).ReceiveMatchesAsync(new List<MatchDto>());
+            //     await base.OnConnectedAsync();
+            //     return;
+            // }
 
-            if (!result.IsSuccess)
-            {
-                logger.LogWarning("No matches found for user {UserId} with role {Role}.",
-                    userId, role);
-                
-                await Clients.User(userId.ToString()).ReceiveMatchesAsync(new List<MatchDto>());
-                await base.OnConnectedAsync();
-                return;
-            }
-
-            await Clients.User(userId.ToString()).ReceiveMatchesAsync(result.Value);
+            // await Clients.User(userId.ToString()).ReceiveMatchesAsync(result.Value);
 
             await base.OnConnectedAsync();
         }
