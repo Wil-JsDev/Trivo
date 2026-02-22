@@ -1,14 +1,17 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Trivo.Application.DTOs.JWT;
 using Trivo.Application.Interfaces.Services;
+using Trivo.Application.Interfaces.SignalR; 
 using Trivo.Domain.Configurations;
 using Trivo.Infrastructure.Shared.Services;
+using Trivo.Infrastructure.Shared.SignalR; 
 
 namespace Trivo.Infrastructure.Shared;
 
@@ -25,6 +28,18 @@ public static class DependencyInjection
     {
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+        #region SignalR
+
+        services.AddSignalR();
+
+        services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+        services.AddSingleton<IAiNotifier, AiNotifier>();
+        services.AddTransient<IRealTimeNotifier, RealTimeNotifier>();
+        services.AddScoped<IMatchNotifier, MatchNotifier>();
+        services.AddScoped<INotificationNotifier, NotificationNotifier>();
+
+        #endregion
     }
 
     private static IServiceCollection AddJwtAuthentication(this IServiceCollection services,
