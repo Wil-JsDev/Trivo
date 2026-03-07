@@ -21,4 +21,8 @@
       <ProjectReference Include="..\..\Domain\Trivo.Domain\Trivo.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Features\InterestCategories\Commands\" />
+    </ItemGroup>
+
 </Project>
