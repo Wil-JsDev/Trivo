@@ -24,13 +24,10 @@ internal sealed class GetPaginatedInterestCategoriesQueryHandler(
                 Error.Failure("400", "The request cannot be null."));
         }
 
-        if (request.PageNumber <= 0 || request.PageSize <= 0)
+        if (!PaginationValidator.TryValidate(request.PageNumber, request.PageSize, logger,
+                out ResultT<PagedResult<InterestCategoryDto>> validationFailure))
         {
-            logger.LogWarning("Invalid pagination parameters. PageNumber: {PageNumber}, PageSize: {PageSize}",
-                request.PageNumber, request.PageSize);
-            
-            return ResultT<PagedResult<InterestCategoryDto>>.Failure(Error.Conflict("409",
-                "Pagination parameters must be greater than zero."));
+            return validationFailure;
         }
 
         string cacheKey = $"get-paginated-interest-categories-{request.PageNumber}-{request.PageSize}";
@@ -48,11 +45,9 @@ internal sealed class GetPaginatedInterestCategoriesQueryHandler(
                 pageSize: request.PageSize
             );
         }, cancellationToken: cancellationToken);
-        
-        
 
         logger.LogInformation("Successfully retrieved {Count} interest categories for page {PageNumber}.",
-            pagedEntities.Items.Count(), request.PageNumber);
+            pagedEntities.Items!.Count(), request.PageNumber);
 
         return ResultT<PagedResult<InterestCategoryDto>>.Success(pagedEntities);
     }
