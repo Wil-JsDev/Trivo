@@ -1,4 +1,5 @@
 using FluentValidation;
+using Trivo.Application.Pagination;
 
 namespace Trivo.Application.Features.Messages.Query.GetMessagePagination;
 
@@ -13,6 +14,7 @@ public sealed class GetMessagePaginationValidator : AbstractValidator<GetMessage
             .GreaterThan(0).WithMessage("Page number must be greater than zero.");
 
         RuleFor(x => x.PageSize)
-            .GreaterThan(0).WithMessage("Page size must be greater than zero.");
+            .InclusiveBetween(1, PaginationValidator.MaxPageSize)
+            .WithMessage($"Page size must be between 1 and {PaginationValidator.MaxPageSize}.");
     }
 }
